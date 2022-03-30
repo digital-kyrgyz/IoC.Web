@@ -5,16 +5,18 @@ namespace Ioc.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ISingletonDateService _singleton;
-    public HomeController(ISingletonDateService singleton)
+    //private readonly ISingletonDateService _singleton;
+    private readonly IScopedDateService _scoped;
+
+    public HomeController(IScopedDateService scoped)
     {
-        _singleton = singleton;
+        _scoped = scoped;
     }
 
-    public IActionResult Index([FromServices] ISingletonDateService singleton2)
+    public IActionResult Index([FromServices] IScopedDateService scoped)
     {
-        ViewBag.Time1 = _singleton.GetDateTime.TimeOfDay.ToString();
-        ViewBag.Time2 = singleton2.GetDateTime.TimeOfDay.ToString();
+        ViewBag.Time1 = _scoped.GetDateTime.TimeOfDay.ToString();
+        ViewBag.Time2 = scoped.GetDateTime.TimeOfDay.ToString();
         return View();
     }
 

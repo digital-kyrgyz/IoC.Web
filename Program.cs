@@ -4,8 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<ISingletonDateService, DateService>();
-builder.Services.AddSingleton<IScopedDateService, DateService>();
-builder.Services.AddSingleton<ITransientDateService, DateService>();
+builder.Services.AddScoped<IScopedDateService, DateService>();
+builder.Services.AddTransient<ITransientDateService, DateService>();
 
 var app = builder.Build();
 
